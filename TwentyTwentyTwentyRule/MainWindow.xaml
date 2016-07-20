@@ -1,0 +1,30 @@
+﻿<Window x:Class="TwentyTwentyTwentyRule.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TwentyTwentyTwentyRule"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button x:Name="button" Grid.ColumnSpan="3" Content="Set Interval" Grid.Column="1" HorizontalAlignment="Left" Margin="150,166,0,0" VerticalAlignment="Top" Width="198" Click="button_Click"/>
+        <Label x:Name="lblPhrase" Content="Let's treat those eyes well!" Grid.Column="1" HorizontalAlignment="Left" Margin="124,49,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="235" Height="75" FontWeight="Bold" FontSize="18"/>
+        <TextBox x:Name="tBox" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Height="93" Margin="191,287,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="298" RenderTransformOrigin="0.5,0.5" FontSize="20" FontWeight="Bold" >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.662"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Label x:Name="lbl_interval" Content="Waiting:" Grid.Column="1" HorizontalAlignment="Left" Margin="26,239,0,0" VerticalAlignment="Top" Width="59"/>
+        <Label x:Name="lbl_wait_time" Content="Rest For: " Grid.Column="1" HorizontalAlignment="Left" Margin="26,286,0,0" VerticalAlignment="Top" Width="59"/>
+        <ComboBox x:Name="cmbbox_interval" Grid.Column="1" HorizontalAlignment="Left" Margin="90,239,0,0" VerticalAlignment="Top" Width="55" IsEditable="True" />
+        <ComboBox x:Name="cmbbox_wait_time" Grid.Column="1" HorizontalAlignment="Left" Margin="90,284,0,0" VerticalAlignment="Top" Width="55" IsEditable="True" />
+        <Label x:Name="lbl_interval_Copy" Content="Minutes&#xD;&#xA;" Grid.Column="1" HorizontalAlignment="Left" Margin="179,247,0,0" VerticalAlignment="Top" Width="59" Grid.ColumnSpan="3"/>
+        <Label x:Name="lbl_interval_Copy1" Content="Minutes&#xD;&#xA;" Grid.Column="1" HorizontalAlignment="Left" Margin="179,294,0,0" VerticalAlignment="Top" Width="59" Grid.ColumnSpan="3"/>
+
+    </Grid>
+</Window>
