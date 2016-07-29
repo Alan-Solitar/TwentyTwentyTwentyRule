@@ -16,6 +16,8 @@ namespace TwentyTwentyTwentyRule
 {
     /// <summary>
     /// Interaction logic for Notification.xaml
+    /// This class represent a notification window which
+    /// will render in response to a a time countdown.
     /// </summary>
     public partial class Notification : Window
     {
@@ -23,6 +25,7 @@ namespace TwentyTwentyTwentyRule
         {
             InitializeComponent();
         }
+        //
         public void setImage(int width, int height)
         {
             this.Width = width;
@@ -43,6 +46,10 @@ namespace TwentyTwentyTwentyRule
             this.Left = (screenWidth / 2) - (windowWidth / 2);
             this.Top = (screenHeight / 2) - (windowHeight / 2);
         }
+
+        /*Set position and content of label to be displayed on top of image
+         * @param lbl_text message to be displayed to the user
+        */
         public void setLabel(string lbl_text)
         {
             this.lbl_phrase.Width = this.main_image.Width / 2;

@@ -18,7 +18,7 @@ namespace TwentyTwentyTwentyRule
         {
             executingPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
         }
-        public List<string> getStringsFromFile()
+        public List<string> GetStringsFromFile()
         {
             StreamReader reader;
             string filepath = Path.Combine(executingPath, stringsFile);
@@ -37,6 +37,24 @@ namespace TwentyTwentyTwentyRule
                 }
             }
             return strings;
+        }
+
+        /*
+         *@return return a list of images 
+        */
+        public List<string> PopulateImageList()
+        {
+            var executingPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            var images = Directory.GetFiles(@".\Images", "*.jpg").ToList();
+            images = images.Concat(Directory.GetFiles(@".\Images", "*.png")).ToList();
+
+            //debug
+            foreach (string Im in images)
+            {
+                Console.WriteLine(Im);
+            }
+
+            return images;
 
 
         }
