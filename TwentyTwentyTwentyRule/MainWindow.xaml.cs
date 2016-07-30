@@ -41,6 +41,8 @@ namespace TwentyTwentyTwentyRule
         private bool bTimerOn;
         private DateTime start;
         private int elapsedTime;
+        private bool bLockComputer;
+        Random rand;
 
         public MainWindow()
         {
@@ -52,21 +54,25 @@ namespace TwentyTwentyTwentyRule
             strings = ioManager.GetStringsFromFile();
             images = ioManager.PopulateImageList();
             bTimerOn = false;
+            rand = new Random();
             initComboBoxes();
            // cmbbox_interval.SelectedIndex=countdownIntervalIndex;
            // cmbbox_wait_time.SelectedIndex = restIntervalIndex;
             restInterval = cmbbox_wait_time.SelectedItem.ToString();
             countdownInterval = cmbbox_interval.SelectedItem.ToString();
             initTimer();
+            bLockComputer = false;
         }
 
         //Create Notification and display to user  
         public void Notify()
         {
+
             var executingPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             notification = new TwentyTwentyTwentyRule.Notification();
-            notification.main_image.Source = new BitmapImage(new Uri(executingPath + images[0]));
+            notification.main_image.Source = new BitmapImage(new Uri(executingPath + images[rand.Next(images.Count)]));
             notification.setLabel(strings[0]);
+            notification.CenterWindowOnScreen();
             notification.ShowDialog();
         }
         public void initComboBoxes()
@@ -89,7 +95,8 @@ namespace TwentyTwentyTwentyRule
             nCountDown = UInt16.Parse( countdownInterval);
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += dispatcherTimer_Tick;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            //dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Interval = new TimeSpan(0, nCountDown, 0);
             start = DateTime.Now;
             
         }
@@ -97,19 +104,17 @@ namespace TwentyTwentyTwentyRule
         public void changeText()
         {
             
-                this.tBox.Text = (elapsedTime).ToString();
+                //this.tBox.Text = (elapsedTime).ToString();
           
         }
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            changeText();
-            elapsedTime+=1;
-            if(elapsedTime>=nCountDown)
+            if (bLockComputer)
+                System.Diagnostics.Process.Start(@"C:\WINDOWS\system32\rundll32.exe", "user32.dll,LockWorkStation");
+            else
             {
-                elapsedTime = 0;
+
                 Notify();
-           
-            
                 if (notification.WindowState == WindowState.Minimized)
                 {
                     notification.WindowState = WindowState.Normal;
@@ -119,7 +124,6 @@ namespace TwentyTwentyTwentyRule
                 notification.Topmost = true;  // important
                 notification.Topmost = false; // important
                 notification.Focus();         // important
-
             }
 
         }
@@ -127,32 +131,7 @@ namespace TwentyTwentyTwentyRule
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            Random rand = new Random();
-            BitmapImage img=null;
-            var executingPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            Notification notification = new TwentyTwentyTwentyRule.Notification();
-            try
-            {
-                 img = new BitmapImage(new Uri(executingPath + images[rand.Next(images.Count)]));
-            }
-            catch(ArgumentOutOfRangeException exception)
-            {
-                MessageBox.Show("No Images were found to display. \nPlease add images to the image folder and/or check that they are supported file formats/");
-                    
-            }
-            if (img != null)
-            {
-                notification.main_image.Source = img;
-                //debug
-                Console.WriteLine(img.PixelHeight + " " + img.PixelWidth);
-                notification.setImage(img.PixelWidth, img.PixelHeight);
-                
-            }
-            notification.setLabel(strings[0]);
-            notification.CenterWindowOnScreen();
-            notification.ShowDialog();
-            */
+            
             if(bTimerOn)
             {
                 dispatcherTimer.Stop();
@@ -193,6 +172,23 @@ namespace TwentyTwentyTwentyRule
             sManager.SetUserRestInterval(cmbx.SelectedIndex);
             nRest = UInt16.Parse(cmbx.SelectedItem.ToString());
         }
+
+        private void btn_lock_button_click(object sender, RoutedEventArgs e)
+        {
+            if (bLockComputer != true)
+            {
+                bLockComputer = true;
+                btn_lock_button.ToolTip = "Disable Lock";
+
+            }
+            else
+            {
+                bLockComputer = false;
+                btn_lock_button.ToolTip = "Enable Computer Lock";
+            }
+        }
+
+       
     }
 }
 

@@ -28,10 +28,14 @@ namespace TwentyTwentyTwentyRule
         //
         public void setImage(int width, int height)
         {
-            this.Width = width;
-            this.Height = height;
+   
             this.main_image.Width = width;
             this.main_image.Height = height;
+            this.Width = width;
+            this.Height = height;
+            // MaxWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+            // MaxHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            this.SizeToContent = SizeToContent.WidthAndHeight;
 
         }
 
@@ -41,10 +45,10 @@ namespace TwentyTwentyTwentyRule
             double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
             double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
             double windowWidth = this.Width;
-            Console.WriteLine(this.Width);
             double windowHeight = this.Height;
             this.Left = (screenWidth / 2) - (windowWidth / 2);
             this.Top = (screenHeight / 2) - (windowHeight / 2);
+     
         }
 
         /*Set position and content of label to be displayed on top of image

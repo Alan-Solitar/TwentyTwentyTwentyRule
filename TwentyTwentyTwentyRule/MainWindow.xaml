@@ -10,16 +10,6 @@
     <Grid>
         <Button x:Name="btn1" Grid.ColumnSpan="3" Content="Start" Grid.Column="1" HorizontalAlignment="Left" Margin="150,166,0,0" VerticalAlignment="Top" Width="198" Click="button_Click"/>
         <Label x:Name="lblPhrase" Content="Let's treat those eyes well!" Grid.Column="1" HorizontalAlignment="Left" Margin="124,49,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="235" Height="75" FontWeight="Bold" FontSize="18"/>
-        <TextBox x:Name="tBox" HorizontalAlignment="Left" Height="68" Margin="242,228,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251" RenderTransformOrigin="0.5,0.5" FontSize="20" FontWeight="Bold" >
-            <TextBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.662"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </TextBox.RenderTransform>
-        </TextBox>
         <Label x:Name="lbl_interval" Content="Waiting:" Grid.Column="1" HorizontalAlignment="Left" Margin="26,239,0,0" VerticalAlignment="Top" Width="59"/>
         <Label x:Name="lbl_wait_time" Content="Rest For: " Grid.Column="1" HorizontalAlignment="Left" Margin="26,286,0,0" VerticalAlignment="Top" Width="59"/>
         <ComboBox x:Name="cmbbox_interval" Grid.Column="1" HorizontalAlignment="Left" Margin="90,239,0,0" VerticalAlignment="Top" Width="55" IsEditable="True" SelectionChanged="cmbbox_interval_SelectionChanged" SelectedIndex="{Binding Source={x:Static properties:Settings.Default},
@@ -28,6 +18,11 @@
                                Path=user_rest_interval}" />
         <Label x:Name="lbl_interval_Copy" Content="Minutes&#xD;&#xA;" HorizontalAlignment="Left" Margin="161,239,0,0" VerticalAlignment="Top" Width="59"/>
         <Label x:Name="lbl_interval_Copy1" Content="Minutes&#xD;&#xA;" HorizontalAlignment="Left" Margin="161,281,0,0" VerticalAlignment="Top" Width="59"/>
+        <Button x:Name="btn_lock_button" Content="" HorizontalAlignment="Left" Margin="432,77,0,0" VerticalAlignment="Top" Width="75" Height="41" Click="btn_lock_button_click" ToolTip="Lock Computer">
+            <Button.Background >
+                <ImageBrush ImageSource="Images/lock_icon.png"  />
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>

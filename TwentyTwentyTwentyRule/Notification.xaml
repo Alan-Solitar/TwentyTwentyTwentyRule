@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwentyTwentyTwentyRule"
         mc:Ignorable="d"
-        Title="Notification" Height="300" Width="300">
+        Title="Notification" Height="1141.77" Width="2063.607">
     <Grid>
-        <Image x:Name="main_image" HorizontalAlignment="Left" Height="1029" VerticalAlignment="Top" Width="1902"/>
+        <Image x:Name="main_image" HorizontalAlignment="Left" Height="1101" VerticalAlignment="Top" Width="2046"/>
         <Label x:Name="lbl_phrase" Content="place holder" HorizontalAlignment="Left" Margin="698,483,0,0" VerticalAlignment="Top" Height="326" Width="497" FontSize="48" FontWeight="Bold"/>
     </Grid>
 </Window>
